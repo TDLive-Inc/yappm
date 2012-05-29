@@ -80,7 +80,7 @@
 					file_put_contents($file[0], $write);
 					chdir($cwd);
 				}
-				if( $write=file_get_contents($value2 . "/packages/$pkg/postinstall.php")){
+				if( $write=@file_get_contents($value2 . "/packages/$pkg/postinstall.php")){
 					echo "Running post-install scripts for " . $pkg . "...\n";
 					file_put_contents("postinstall.tmp", $write);
 					include("postinstall.tmp");
@@ -91,8 +91,6 @@
 				}
 			}
 		}
-	elseif($argv[1] == "upgrade"){
-		
 	else{
 		echo "'I have no idea what you are talking about.' ~Lisa Lutz";
 		exit;
