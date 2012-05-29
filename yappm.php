@@ -64,12 +64,14 @@
 					$directories_to_make=explode("/", $file[1]);
 					if(isset($directories_to_make)){
 						foreach($directories_to_make as $value){
-							echo $value;
-							mkdir($value);
+							if(! is_dir($value)){
+								mkdir($value);
+							}
 							chdir($value);
 						}
 					}
 					file_put_contents($file[0], file_get_contents($value2 . "/packages/$pkg/files/" . $file[0]) or die("Could not find file " . $file[0] . "."));
+					chdir($cwd);
 				}
 			}
 		}
