@@ -78,13 +78,15 @@
 					$write=file_get_contents($value2 . "/packages/$pkg/files/" . $file[0]) or die("Could not find file " . $file[0] . ".");
 					file_put_contents($file[0], $write);
 					chdir($cwd);
-					if( $write=file_get_contents($value2 . "/packages/$pkg/postinstall.php")){
-						echo "Running post-install scripts for " . $pkg . "...\n";
-						file_put_contents("postinstall.tmp", $write);
-						include("postinstall.tmp");
-						unlink("postinstall.tmp");
-					}
-					echo "Done!";
+				}
+				if( $write=file_get_contents($value2 . "/packages/$pkg/postinstall.php")){
+					echo "Running post-install scripts for " . $pkg . "...\n";
+					file_put_contents("postinstall.tmp", $write);
+					include("postinstall.tmp");
+					unlink("postinstall.tmp");
+				}
+				echo "Done!";
+				exit;
 				}
 			}
 		}
