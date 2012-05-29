@@ -1,7 +1,10 @@
 <?php
-	define('VER', '0.29 alpha');
+	define('VER', '0.2a');
 	$repos=file_get_contents("repos.inf");
 	$repos=explode("\r\n", $repos);
+	if(! is_array($repos)){
+		$packages=explose("\n", $repos);
+	}
 	echo "TDLive Yap'pm " . VER . "\nA FULL (alpha) PHP package manager!\n(c)2012 TDLive Inc.\nThis TEST release is licensed under the Creative Commons BY-NC-SA license, available at:\nhttp://creativecommons.org/licenses/by-nc-sa/3.0/\n";
 	if(@$argv[1] == "install"){
 		if(! @isset($argv[2])){
@@ -18,6 +21,9 @@
 				$value2=$value;
 				echo "Checking the package list for the selected package in '$value/'...\n";
 				$packages=explode("\r\n", $packages);
+				if(! is_array($packages)){
+					$packages=explode("\n", $packages);
+				}
 				foreach($packages as $value){
 					echo "Looking for " . $argv[2] . "...\n";
 					if($argv[2] == $value){
@@ -39,6 +45,9 @@
 			if(! $pkginfo=@file_get_contents("$value2/packages/$pkg/info.inf")) { die("O noes! The package info was not found!"); }
 			echo "Doing a little thinking...\n";
 			$pkginfo=explode("\r\n", $pkginfo);
+			if(! is_array($packages)){
+				$packages=explode("\n", $packages);
+			}
 			$package["id"]=$argv[2];
 			$package["name"]=$pkginfo[0];
 			$package["desc"]=$pkginfo[1];
