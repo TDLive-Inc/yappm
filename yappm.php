@@ -65,11 +65,16 @@
 					if(isset($directories_to_make)){
 						foreach($directories_to_make as $value){
 							if(! is_dir($value)){
+								echo "Creating directory " . $value . ".\n";
 								mkdir($value);
+							}
+							else{
+								echo "Directory " . $value . " already exists.\n";
 							}
 							chdir($value);
 						}
 					}
+					echo "Installing file " . $file[0] . " in " . $file[1] . "\n";
 					$write=file_get_contents($value2 . "/packages/$pkg/files/" . $file[0]) or die("Could not find file " . $file[0] . ".");
 					file_put_contents($file[0], $write);
 					chdir($cwd);
