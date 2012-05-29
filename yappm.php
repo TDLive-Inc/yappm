@@ -1,12 +1,13 @@
 <?php
 	define('VER', '0.29 alpha');
+	$repos=file_get_contents("repos.inf");
+	$repos=explode("\r\n", $repos);
 	echo "TDLive Yap'pm " . VER . "\nA FULL (alpha) PHP package manager!\n(c)2012 TDLive Inc.\nThis TEST release is licensed under the Creative Commons BY-NC-SA license, available at:\nhttp://creativecommons.org/licenses/by-nc-sa/3.0/\n";
 	if(@$argv[1] == "install"){
 		if(! @isset($argv[2])){
 			echo "I won't know which package to install unless you tell me!";
 			exit;
 		}
-		$repos=Array("http://localhost/yappm");
 		echo "Beginning to look for '" . $argv[2] . "'...\n";
 		foreach($repos as $value){
 			if(!@isset($found)){
@@ -90,7 +91,8 @@
 				}
 			}
 		}
-	}
+	elseif($argv[1] == "upgrade"){
+		
 	else{
 		echo "'I have no idea what you are talking about.' ~Lisa Lutz";
 		exit;
