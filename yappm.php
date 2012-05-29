@@ -1,6 +1,6 @@
 <?php
 	define('VER', '0.29 alpha');
-	echo "TDLive Yap'pm " . VER . "\nA FULL (alpha) PHP package manager!\n(c)2012 TDLive Inc.\nLicensed under Creative Commons BY-NC-SA, available at:\nhttp://creativecommons.org/licenses/by-nc-sa/3.0\n";
+	echo "TDLive Yap'pm " . VER . "\nA FULL (alpha) PHP package manager!\n(c)2012 TDLive Inc.\nThis TEST release is licensed under the Creative Commons BY-NC-SA license, available at:\nhttp://creativecommons.org/licenses/by-nc-sa/3.0/\n";
 	if(@$argv[1] == "install"){
 		if(! @isset($argv[2])){
 			echo "I won't know which package to install unless you tell me!";
@@ -60,22 +60,6 @@
 				foreach($installinfo as $value){
 					$file=explode(" ", $value);
 					$unames=strtolower(php_uname('s'));
-					if($unames == "windows nt"){
-						echo "in";
-						if(strpos($file[1], "/") === true){
-							echo "in2";
-							$file[1] = "C:\php_packages\\" . $file[1];
-							$file[1] = str_replace("/", "\\", $file[1]);
-							echo "out2";
-						}
-						echo "out";
-					}
-					else{
-						if(strpos($file[1], "\\") === true){
-							$file[1] = str_replace("C:\\php_packages", "", $file[1]);
-							$file[1] = str_replace("\\", "/", $file[1]);
-						}
-					}
 					$cwd=getcwd();
 					$directories_to_make=explode("/", $file[1]);
 					if(isset($directories_to_make)){
